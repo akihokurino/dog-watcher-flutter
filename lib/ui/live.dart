@@ -9,11 +9,13 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:uuid/uuid.dart';
 
 class LivePage extends StatefulWidget {
-  static Widget init() {
-    return LivePage(key: GlobalObjectKey(const Uuid().v4()));
+  final String token;
+
+  static Widget init(String token) {
+    return LivePage(key: GlobalObjectKey(const Uuid().v4()), token: token);
   }
 
-  const LivePage({Key? key}) : super(key: key);
+  const LivePage({Key? key, required this.token}) : super(key: key);
 
   @override
   _LivePageState createState() => _LivePageState();
@@ -55,7 +57,7 @@ class _LivePageState extends State<LivePage> {
       ),
     );
 
-    await _engine.joinChannel("", "channel-alpha", null, 0);
+    await _engine.joinChannel(widget.token, "channel-alpha", null, 0);
   }
 
   @override
