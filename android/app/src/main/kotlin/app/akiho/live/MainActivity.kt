@@ -1,4 +1,4 @@
-package app.akiho.dog_watcher
+package app.akiho.live
 
 import io.flutter.embedding.android.FlutterActivity
 

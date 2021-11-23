@@ -1,6 +1,6 @@
-import 'package:dog_watcher/model/errors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:graphql/client.dart';
+import 'package:live/model/errors.dart';
 
 class GQClient {
   static final GQClient _singleton = GQClient._internal();
