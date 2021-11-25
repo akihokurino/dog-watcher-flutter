@@ -1,5 +1,5 @@
-query GetToken {
-    rtcToken {
+query AgoraToken($channelName: String!) {
+    agoraToken(channelName: $channelName) {
         token
     }
 }

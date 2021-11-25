@@ -1,11 +1,11 @@
 #
-type Query {
+type AgoraToken {
   #
-  rtcToken: RTCToken!
+  token: String!
 }
 
 #
-type RTCToken {
+type Query {
   #
-  token: String!
+  agoraToken(channelName: String!): AgoraToken!
 }

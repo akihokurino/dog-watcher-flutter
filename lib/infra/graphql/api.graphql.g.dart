@@ -7,24 +7,36 @@ part of 'api.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetToken$Query$RTCToken _$GetToken$Query$RTCTokenFromJson(
+AgoraToken$Query$AgoraToken _$AgoraToken$Query$AgoraTokenFromJson(
     Map<String, dynamic> json) {
-  return GetToken$Query$RTCToken()..token = json['token'] as String;
+  return AgoraToken$Query$AgoraToken()..token = json['token'] as String;
 }
 
-Map<String, dynamic> _$GetToken$Query$RTCTokenToJson(
-        GetToken$Query$RTCToken instance) =>
+Map<String, dynamic> _$AgoraToken$Query$AgoraTokenToJson(
+        AgoraToken$Query$AgoraToken instance) =>
     <String, dynamic>{
       'token': instance.token,
     };
 
-GetToken$Query _$GetToken$QueryFromJson(Map<String, dynamic> json) {
-  return GetToken$Query()
-    ..rtcToken = GetToken$Query$RTCToken.fromJson(
-        json['rtcToken'] as Map<String, dynamic>);
+AgoraToken$Query _$AgoraToken$QueryFromJson(Map<String, dynamic> json) {
+  return AgoraToken$Query()
+    ..agoraToken = AgoraToken$Query$AgoraToken.fromJson(
+        json['agoraToken'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$GetToken$QueryToJson(GetToken$Query instance) =>
+Map<String, dynamic> _$AgoraToken$QueryToJson(AgoraToken$Query instance) =>
     <String, dynamic>{
-      'rtcToken': instance.rtcToken.toJson(),
+      'agoraToken': instance.agoraToken.toJson(),
+    };
+
+AgoraTokenArguments _$AgoraTokenArgumentsFromJson(Map<String, dynamic> json) {
+  return AgoraTokenArguments(
+    channelName: json['channelName'] as String,
+  );
+}
+
+Map<String, dynamic> _$AgoraTokenArgumentsToJson(
+        AgoraTokenArguments instance) =>
+    <String, dynamic>{
+      'channelName': instance.channelName,
     };

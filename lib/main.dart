@@ -16,10 +16,11 @@ void main() async {
   final gqClient = GQClient();
   gqClient.setup("https://live-333014.an.r.appspot.com/query");
 
-  final payload = GetTokenQuery();
+  final payload =
+      AgoraTokenQuery(variables: AgoraTokenArguments(channelName: "alpha"));
   final resp = await GQClient().query(QueryOptions(document: payload.document));
-  final decoded = GetToken$Query.fromJson(resp);
-  final token = decoded.rtcToken.token;
+  final decoded = AgoraToken$Query.fromJson(resp);
+  final token = decoded.agoraToken.token;
 
   final app = MaterialApp(
     debugShowCheckedModeBanner: false,
