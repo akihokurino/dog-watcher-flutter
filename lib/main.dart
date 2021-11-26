@@ -2,10 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:graphql/client.dart';
-import 'package:live/infra/graphql/api.dart';
 import 'package:live/infra/graphql/client.dart';
-import 'package:live/ui/live.dart';
+import 'package:live/ui/menu.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,16 +14,10 @@ void main() async {
   final gqClient = GQClient();
   gqClient.setup("https://live-333014.an.r.appspot.com/query");
 
-  final payload =
-      AgoraTokenQuery(variables: AgoraTokenArguments(channelName: "alpha"));
-  final resp = await GQClient().query(QueryOptions(document: payload.document));
-  final decoded = AgoraToken$Query.fromJson(resp);
-  final token = decoded.agoraToken.token;
-
   final app = MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData.dark(),
-    home: LivePage.init(token),
+    home: MenuPage.init(),
     builder: (context, child) {
       // 端末の文字サイズ設定を無効にする
       return MediaQuery(

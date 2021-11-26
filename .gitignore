@@ -48,4 +48,3 @@ app.*.map.json
 .env
 GoogleService-Info.plist
 google-services.json
-android/app/build/

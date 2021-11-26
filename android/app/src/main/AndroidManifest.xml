@@ -10,7 +10,6 @@
     <application
         android:label="live"
         android:icon="@mipmap/ic_launcher">
-
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

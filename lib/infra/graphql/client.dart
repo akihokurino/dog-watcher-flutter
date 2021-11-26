@@ -1,6 +1,7 @@
+import 'dart:isolate';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:graphql/client.dart';
-import 'package:live/model/errors.dart';
 
 class GQClient {
   static final GQClient _singleton = GQClient._internal();
@@ -89,4 +90,8 @@ class GQClient {
       return Future.value("");
     }
   }
+}
+
+class AppError extends RemoteError {
+  AppError(String message) : super(message, "");
 }
