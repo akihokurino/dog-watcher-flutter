@@ -1,4 +1,4 @@
-package app.akiho.live
+package app.akiho.webrtc
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:live/infra/graphql/client.dart';
-import 'package:live/ui/menu.dart';
+import 'package:webrtc/infra/graphql/client.dart';
+import 'package:webrtc/ui/menu.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +12,7 @@ void main() async {
   await FirebaseAuth.instance.signInAnonymously();
 
   final gqClient = GQClient();
-  gqClient.setup("https://live-333014.an.r.appspot.com/query");
+  gqClient.setup("https://webrtc-agora.an.r.appspot.com//query");
 
   final app = MaterialApp(
     debugShowCheckedModeBanner: false,

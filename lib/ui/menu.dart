@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
-import 'package:live/infra/graphql/api.graphql.dart';
-import 'package:live/infra/graphql/client.dart';
-import 'package:live/ui/agora_webrtc.dart';
-import 'package:live/ui/transition.dart';
 import 'package:uuid/uuid.dart';
+import 'package:webrtc/infra/graphql/api.graphql.dart';
+import 'package:webrtc/infra/graphql/client.dart';
+import 'package:webrtc/ui/agora_webrtc.dart';
+import 'package:webrtc/ui/transition.dart';
 
 class MenuPage extends StatefulWidget {
   static Widget init() {
