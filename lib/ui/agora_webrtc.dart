@@ -28,6 +28,8 @@ class _AgoraWebRTCPageState extends State<AgoraWebRTCPage> {
   int? _remoteUid;
   bool _localUserJoined = false;
   late RtcEngine _engine;
+  bool _isAudioMuted = true;
+  bool _isVideoMuted = false;
 
   @override
   void initState() {
@@ -46,6 +48,8 @@ class _AgoraWebRTCPageState extends State<AgoraWebRTCPage> {
 
     _engine = await RtcEngine.create(dotenv.env["AGORA_APP_ID"]!);
     await _engine.enableVideo();
+    await _engine.muteLocalAudioStream(_isAudioMuted);
+
     _engine.setEventHandler(
       RtcEngineEventHandler(
         joinChannelSuccess: (String channel, int uid, int elapsed) {
@@ -82,7 +86,7 @@ class _AgoraWebRTCPageState extends State<AgoraWebRTCPage> {
             child: _remoteVideo(),
           ),
           Align(
-            alignment: Alignment.topLeft,
+            alignment: Alignment.topRight,
             child: Container(
               padding: EdgeInsets.zero,
               width: 100,
@@ -91,6 +95,45 @@ class _AgoraWebRTCPageState extends State<AgoraWebRTCPage> {
                 child: _localUserJoined
                     ? RtcLocalView.SurfaceView()
                     : const CircularProgressIndicator(),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+              child: InkWell(
+                onTap: () async {
+                  setState(() {
+                    _isVideoMuted = !_isVideoMuted;
+                  });
+
+                  if (_isVideoMuted) {
+                    await _engine.disableVideo();
+                  } else {
+                    await _engine.enableVideo();
+                  }
+                },
+                child: Icon(Icons.video_call_rounded,
+                    size: 60,
+                    color: _isVideoMuted ? Colors.grey : Colors.blueAccent),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+              child: InkWell(
+                onTap: () async {
+                  setState(() {
+                    _isAudioMuted = !_isAudioMuted;
+                  });
+                  await _engine.muteLocalAudioStream(_isAudioMuted);
+                },
+                child: Icon(Icons.mic,
+                    size: 60,
+                    color: _isAudioMuted ? Colors.grey : Colors.blueAccent),
               ),
             ),
           ),
@@ -103,10 +146,7 @@ class _AgoraWebRTCPageState extends State<AgoraWebRTCPage> {
     if (_remoteUid != null) {
       return RtcRemoteView.SurfaceView(uid: _remoteUid!);
     } else {
-      return const Text(
-        'Please wait for remote user to join',
-        textAlign: TextAlign.center,
-      );
+      return Container();
     }
   }
 }
